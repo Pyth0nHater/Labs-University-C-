@@ -2,66 +2,69 @@
 #include <fstream>
 using namespace std;
 
+// ф-я на поиск строки где чаще встречается символ
 void symbolInStr(char *str, char *str2, char *symbol)
 {
+    // инициализация переменных
+    int i, j = 0;
+    int symbolInStr, symbolInStr2 = 0;
 
-    int symbolInStr = 0;
-    int symbolInStr2 = 0;
-
-    for (int i = 0; i <= sizeof(str); i++)
+    // поиск кол-ва встеч символа в 1 строке
+    while (str[i] != '\0') // идем до конца 1 строки
     {
-        if (str[i] == symbol[0])
+        if (str[i] == symbol[0]) // если нашелся
         {
-            cout << str[i] << endl;
-            symbolInStr++;
-            cout << symbolInStr << endl;
+            symbolInStr++; // увеличиваем
         }
-    };
+        i++;
+    }
 
-    for (int j = 0; j <= sizeof(str2); j++)
+    // поиск кол-ва встеч символа во 2 стоке
+    while (str2[j] != '\0') // идем до конца 2 строки
     {
-        if (str2[j] == symbol[0])
+        if (str2[j] == symbol[0]) // если нашелся
         {
-            cout << str2[j] << endl;
-            symbolInStr2++;
+            symbolInStr2++; // увеличиваем
         }
-    };
+        j++;
+    }
 
     // сравниваем где больше
-    if (symbolInStr > symbolInStr2)
+    if (symbolInStr > symbolInStr2) // если в 1 строке больше
     {
-        cout << str << endl;
+        cout << str << endl; // выводим 1
     }
-    else if (symbolInStr2 > symbolInStr)
+    else if (symbolInStr2 > symbolInStr) // если в 2 строке больше
     {
-        cout << str2 << endl;
+        cout << str2 << endl; // выводим 2
     }
-    else
+    else // если одинакого
     {
-        cout << "The number of the symbol is the same" << endl;
+        cout << "The number of symbol is the same" << endl; // вывыод об одинаковом кол-ве
     }
-};
+}; // конец ф-ии
 
+// ф-я на поиск одинковых слов в 2х строках
 void DublicateOfWord(char *str, char *str2)
 {
-    int i, j, l, indexPovtorSlova = 0;
+    int i, j, l = 0;
     int beginWord, endWord, beginWord2, endWord2 = 0;
     int lenStr, lenStr2 = 0;
+    int povtorCount = 0;
     bool fl = true;
-    char povtorSlova[256];
 
     // инициализация переменных
     // идем до конца 1й строки
-    i = 0;
-    while (str[i] != '\0')
+    i = 0;                 // обнуляем индекс
+    while (str[i] != '\0') // идем до конца 1ой строки
     {
-        while ((str[i] != '\0') && (str[i] == ' '))
+        while ((str[i] != '\0') && (str[i] == ' ')) // идем до 1го элемента слова
         {
             i++;
         }
         beginWord = i; // первый элемент
         //
-        while (str[i] != '\0' && str[i] != ' ')
+        while (str[i] != '\0' && str[i] != ' ') // идем по слову до полсденего элемента
         {
             i++;
         }
@@ -69,15 +72,15 @@ void DublicateOfWord(char *str, char *str2)
         lenStr = endWord - beginWord + 1; // длина слова 1 строки
 
         // 2 строка
-        j = 0;
-        while (str2[j] != '\0')
+        j = 0;                  // обнуляем индекс
+        while (str2[j] != '\0') // идем до конца 2й строки
         {
-            while ((str2[j] != '\0') && (str2[j] == ' '))
+            while ((str2[j] != '\0') && (str2[j] == ' ')) // идем до 1го элемента слова
             {
                 j++;
             }
-            beginWord2 = j; // 1 элемент
-            while (str2[j] != '\0' && str2[j] != ' ')
+            beginWord2 = j;                           // 1 элемент
+            while (str2[j] != '\0' && str2[j] != ' ') // идем по слову до полсденего элемента
             {
                 j++;
             }
@@ -87,60 +90,69 @@ void DublicateOfWord(char *str, char *str2)
             // сравниваем длины
             if (lenStr == lenStr2)
             {
-                l = beginWord2; // 1 элемент слова со 2 строки
-                fl = true;      // поднимает флаг
-                for (int k = beginWord; k <= endWord; k++)
-                { // идем по длине
-                    if (str[k] == str2[l])
-                    {        // если элементы совпали
-                             // записываем 1 элемент в повтор слов
-                             // шаг вперед в повторе слова
+                l = beginWord2;                            // 1 элемент слова со 2 строки
+                fl = true;                                 // поднимает флаг(на случай если опустили при прошлом сравнении)
+                for (int k = beginWord; k <= endWord; k++) // идем по длине
+                {
+                    if (str[k] == str2[l]) // если элементы совпали
+                    {
                         l++; // шаг вепед в слове из 2 строки
                     }
-                    else
+                    else // если элементы не совпали
                     {
                         fl = false; // опускаем флаг
                     }
                 }
-                indexPovtorSlova = 0; // обнуляем индексы
-                l = 0;
+                l = 0;  // обнуляем индекс для следующих слов
                 if (fl) // если флаг поднят
                 {
-                    for (int o = 0; o <= endWord; o++)
+                    for (int k = beginWord; k <= endWord; k++)
                     {
-                        cout << povtorSlova[o];
-                    } // выводим
-                }
-                cout << endl;
-            }
-        }
+                        cout << str[k]; // выводим
+                    }
+                    cout << endl;
+                    povtorCount++; // cчитаем кол-во повторений
+                }                  // конец проверки состояния флага
+            }                      // конец проверки на совпадние длин слов
+        }                          // конец цыкла до конца 2 строки
+    }                              // конец цыкла до конца 1 строки
+    if (povtorCount == 0)          // если кол-во слов равно 0
+    {
+        cout << "Not the same words" << endl; // вывод ошибки(нет одинаковы слов)
     }
-}
+} // конец ф-ии
 
+// основная программа
 int main()
 {
     // инициализация переменных
 
-    const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test1.txt";
-    // const char *FNAME = "D:\\VS\\AllLabs\\test2.txt";
-    // const char *FNAME = "D:\\VS\\AllLabs\\test3.txt";
-    // const char *FNAME = "D:\\VS\\AllLabs\\test4.txt";
-    // const char *FNAME = "D:\\VS\\AllLabs\\test5.txt";
-    // const char *FNAME = "D:\\VS\\AllLabs\\test6.txt";
-    // const char *FNAME = "D:\\VS\\AllLabs\\test7.txt";
-    // const char *FNAME = "D:\\VS\\AllLabs\\test8.txt";
+    const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test12.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test2.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test3.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test4.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test5.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test6.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test7.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test8.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test9.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test10.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test11.txt";
+    // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test12.txt";
 
+    // иницалицзаия переменных для содержания файла
     char str[256];
     char str2[256];
     char symbol[256];
+    char emptysymbol[] = "";
 
     // начало чтения
     ifstream fin(FNAME);
 
     if (!fin)
     {
-        cout << "file " << FNAME << " not found" << endl;
-        return 1; // выход по ошибке
+        cout << "file " << FNAME << " not found" << endl; // вывод ошибки
+        return 1;                                         // выход по ошибке
     }
 
     // читаем из файла
@@ -151,11 +163,15 @@ int main()
     // проверки состояния файла
     if ((fin.eof()) && (fin.fail())) // файл пуст
     {
-        cout << "file " << FNAME << " empty" << endl;
-        fin.close(); // закрыть файл
-        return 2;    // выход по ошибке
+        cout << "file " << FNAME << " empty" << endl; // вывод ошибки(файл пуст)
+        fin.close();                                  // закрыть файл
+        return 2;                                     // выход по ошибке
     }
-
+    if (symbol[0] == emptysymbol[0] || str[0] == emptysymbol[0] || str2[0] == emptysymbol[0])
+    {
+        cout << "check file data in correct" << endl;
+        return 3;
+    }
     // Вывод строк из файла
     cout << "Symbol = <" << symbol[0] << ">" << endl;
     cout << "Str 1 = <" << str << ">" << endl;

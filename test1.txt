@@ -1,3 +1,5 @@
-b
-qwertyu  zxc abc
-zxc qwertyu  gg abc
+a
+abc  zxc gcс
+qwe asd   gg abc
+
+//тест на лишние пробелы словами 
