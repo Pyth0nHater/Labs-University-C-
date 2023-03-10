@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-
+///123213
 void symbolInStr(char *str, char *str2, char *symbol)
 {
 
