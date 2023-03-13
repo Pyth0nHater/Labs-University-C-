@@ -127,7 +127,7 @@ int main()
 {
     // инициализация переменных
 
-    const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test12.txt";
+    const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test11.txt";
     // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test2.txt";
     // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test3.txt";
     // const char *FNAME = "C:\\Users\\korol\\.vscode\\Labs-University-C-\\test4.txt";
@@ -145,6 +145,7 @@ int main()
     char str2[256];
     char symbol[256];
     char emptysymbol[] = "";
+    char probel[] = " ";
 
     // начало чтения
     ifstream fin(FNAME);
@@ -167,7 +168,7 @@ int main()
         fin.close();                                  // закрыть файл
         return 2;                                     // выход по ошибке
     }
-    if (symbol[0] == emptysymbol[0] || str[0] == emptysymbol[0] || str2[0] == emptysymbol[0])
+    if ((symbol[0] == emptysymbol[0] || str[0] == emptysymbol[0] || str2[0] == emptysymbol[0]) || (symbol[0] == probel[0] || str[0] == probel[0] || str2[0] == probel[0]))
     {
         cout << "check file data in correct" << endl;
         return 3;

@@ -1,3 +1,5 @@
-a
-  zxc gcс
-qwe asd  gg abc
+c
+  zxc gcc
+qwe asd  gg abccc
+
+//если кол-во символа(c) одинакого 

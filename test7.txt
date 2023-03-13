@@ -1,5 +1,5 @@
 a
-abc zxc gcс  
+abc zxc gcc  
 qwe asd gg abc
 
 //тест на поиск одинаковых слов в обеих строках

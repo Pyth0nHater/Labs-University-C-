@@ -1,5 +1,5 @@
 a
-abc zxc gcс q
+abc zxc gcc q
 qwe asd gg abc
 
 //тест на строку где чаще встречается символ(одинакого)
